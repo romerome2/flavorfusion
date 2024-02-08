@@ -19,16 +19,7 @@ class User:
       self.id = id
      def get_id(self):
              return str(self.id)
-
-def load_user(user_id):
-    cursor = conn.cursor()
-    cursor.execute("SELECT * FROM `users`WHERE `id` = "+str(user_id))
-    result = cursor.fetchone()
-    if result is None:
-        return None
-    return User(result["id"], result["username"])
-
-  
+     
 conn = pymysql.connect(
     database="jspooner_erdiagram" ,
     user="jspooner",
@@ -47,6 +38,9 @@ def load_user(user_id):
    
 @app.route('/')
 def index():
+    if flask_login.current_user.is_authenticated:
+        return redirect('/feed')
+ 
     return render_template('home.html.jinja')
     
 @app.route('/register', methods=['GET', 'POST'])
@@ -58,8 +52,9 @@ def register():
         birthday = request.form["birthday"]
         cursor = conn.cursor()
         cursor.execute(f"INSERT INTO `user` (__PUT_COLUMNS_HERE__) VALUES ('{username}', '{password}', '{bio}')")
-    cursor.close()
-    conn.commit()
+        cursor.close()
+        conn.commit()
     
     return render_template("register.html.jinja")
  
+
