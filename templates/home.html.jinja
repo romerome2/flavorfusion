@@ -1,100 +1,66 @@
-<!doctype html>
-<html lang="en">
-  <head>
-    <meta charset="utf-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1">
-    <title>Bootstrap demo</title>
-    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" crossorigin="anonymous">
-    <link>
-  
-  </head>
-  <body>
-    <h1>Welcome to Flavor Fusion</h1>
-    <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-C6RzsynM9kWDrMNeT87bh95OGNyZPhcTNXj1NW7RuBCsyN/o0jlpcV8Qyq46cDfL" crossorigin="anonymous"></script>
-<img src="/static/logo.png" alt="Flavor Fusion image" width="1510" height="700">
-    
-
-<ul class="nav justify-content-end">
-  <li class="nav-item">
-  
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">Flavors</a>
-  </li>
-  <li class="nav-item">
-    <a class="nav-link" href="#">More Flavors to come</a>
-  </li>
-
-</ul>
-
-</nav>
-</html>
-
 <!DOCTYPE html>
+<html lang="en">
 
-<html lang="en" dir="ltr">
-   <head>
-      <meta charset="utf-8">
-      <title>Login Form Design | CodeLab</title>
-      <link rel="stylesheet" href="style.css">
-   </head>
-   <body>
-      <div class="wrapper">
-         <div class="title">
-            Login Form
-         </div>
-         <form action="#">
-            <div class="field">
-               <input type="text" required>
-               <label>Email Address</label>
+<head>
+    <meta charset="utf-8">
+    <title>Social Network Home News Feed - Bootdey.com</title>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
+    <style type="text/css">
+     
+    </style>
+</head>
+
+<body>
+
+    <div class="container bootdey">
+        <div class="col-md-12 bootstrap snippets">
+            <div class="panel">
+                <div class="panel-body">
+                    <form method="POST" action="{{ url_for('feed') }}">
+                        <textarea name="post_content" class="form-control" rows="2"
+                            placeholder="What are you thinking?"></textarea>
+                        <div class="mar-top clearfix">
+                            <button class="btn btn-sm btn-primary pull-right" type="submit"><i
+                                    class="fa fa-pencil fa-fw"></i> Share</button>
+                            <a class="btn btn-trans btn-icon fa fa-video-camera add-tooltip" href="#"></a>
+                            <a class="btn btn-trans btn-icon fa fa-camera add-tooltip" href="#"></a>
+                            <a class="btn btn-trans btn-icon fa fa-file add-tooltip" href="#"></a>
+                        </div>
+                    </form>
+                </div>
             </div>
-            <div class="field">
-               <input type="password" required>
-               <label>Password</label>
+            {% for post in posts %}
+            <div class="panel">
+                <div class="panel-body">
+                    <div class="media-block">
+                        <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture"
+                                src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                        <div class="media-body">
+                            <div class="mar-btm">
+                                <a href="#" class="btn-link text-semibold media-heading box-inline">{{ post['UserId'] }}</a>
+                                <p class="text-muted text-sm"><i class="fa fa-clock-o fa-lg"></i>
+                                    {{ post['Timestamp'] }}</p>
+                            </div>
+                            <p>{{ post['description'] }}</p>
+                            <div class="pad-ver">
+                                <span class="tag tag-sm"><i class="fa fa-heart text-danger"></i>
+                                    {{ post['Likes'] }} Likes</span>
+                                <div class="btn-group">
+                                    <a class="btn btn-sm btn-default btn-hover-success" href="#"><i
+                                            class="fa fa-thumbs-up"></i></a>
+                                    <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i
+                                            class="fa fa-thumbs-down"></i></a>
+                                </div>
+                                <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
+                            </div>
+                        </div>
+                    </div>
+                </div>
             </div>
-            <div class="content">
-               <div class="checkbox">
-                  <input type="checkbox" id="remember-me">
-                  <label for="remember-me">Remember me</label>
-               </div>
-               <div class="pass-link">
-                  <a href="#">Forgot password?</a>
-               </div>
-            </div>
-            <div class="field">
-               <input type="submit" value="Login">
-            </div>
-            <div class="signup-link">
-               Not a member? <a href="/register">Signup now</a>
-            </div>
-         </form>
-      </div>
-   </body>
-<style>
-h1,h2{
-  font-weight: bolder;
-  font-family:'ultra',Georgia,;
-color: darkslateblue;
-text-align: center;
-}
+            {% endfor %}
+        </div>
+    </div>
 
-body{
-background-color: #FFFFFF;
-background-image: url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' width='1765' height='1765' viewBox='0 0 200 200'%3E%3Cdefs%3E%3ClinearGradient id='a' gradientUnits='userSpaceOnUse' x1='88' y1='88' x2='0' y2='0'%3E%3Cstop offset='0' stop-color='%23000051'/%3E%3Cstop offset='1' stop-color='%23000156'/%3E%3C/linearGradient%3E%3ClinearGradient id='b' gradientUnits='userSpaceOnUse' x1='75' y1='76' x2='168' y2='160'%3E%3Cstop offset='0' stop-color='%23868686'/%3E%3Cstop offset='0.09' stop-color='%23ababab'/%3E%3Cstop offset='0.18' stop-color='%23c4c4c4'/%3E%3Cstop offset='0.31' stop-color='%23d7d7d7'/%3E%3Cstop offset='0.44' stop-color='%23e5e5e5'/%3E%3Cstop offset='0.59' stop-color='%23f1f1f1'/%3E%3Cstop offset='0.75' stop-color='%23f9f9f9'/%3E%3Cstop offset='1' stop-color='%23FFFFFF'/%3E%3C/linearGradient%3E%3Cfilter id='c' x='0' y='0' width='200%25' height='200%25'%3E%3CfeGaussianBlur in='SourceGraphic' stdDeviation='12' /%3E%3C/filter%3E%3C/defs%3E%3Cpolygon fill='url(%23a)' points='0 174 0 0 174 0'/%3E%3Cpath fill='%23000' filter='url(%23c)' d='M121.8 174C59.2 153.1 0 174 0 174s63.5-73.8 87-94c24.4-20.9 87-80 87-80S107.9 104.4 121.8 174z'/%3E%3Cpath fill='url(%23b)' d='M142.7 142.7C59.2 142.7 0 174 0 174s42-66.3 74.9-99.3S174 0 174 0S142.7 62.6 142.7 142.7z'/%3E%3C/svg%3E");
-background-attachment: fixed;
-background-repeat: no-repeat;
-background-position: top left;
-}
-
-
-
-
-li{
-  text-align: ;
-}
-
-
-
-
-</style>
-</html>
+    <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
+    <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
