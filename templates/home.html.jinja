@@ -7,19 +7,61 @@
     <meta name="viewport" content="width=device-width, initial-scale=1">
     <link href="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css" rel="stylesheet">
     <style type="text/css">
-     
+        body {
+            background-color: #f8f9fa;
+        }
+
+        .container {
+            margin-top: 20px;
+        }
+
+        .panel {
+            background-color: #fff;
+            border: 1px solid #ddd;
+            border-radius: 8px;
+            margin-bottom: 20px;
+            box-shadow: 0 2px 2px rgba(0, 0, 0, 0.1);
+        }
+
+        .panel-body {
+            padding: 20px;
+        }
+
+        .media-block {
+            border-bottom: 1px solid #ddd;
+            padding-bottom: 20px;
+            margin-bottom: 20px;
+        }
+
+        .media-left img {
+            width: 64px;
+            height: 64px;
+            border-radius: 50%;
+        }
+
+        .media-body {
+            padding-left: 20px;
+        }
+
+        .btn-group {
+            margin-top: 10px;
+        }
+
+        .tag {
+            margin-right: 10px;
+        }
     </style>
 </head>
 
 <body>
 
-    <div class="container bootdey">
-        <div class="col-md-12 bootstrap snippets">
+    <div class="container">
+        <div class="col-md-8 col-md-offset-2">
             <div class="panel">
                 <div class="panel-body">
                     <form method="POST" action="{{ url_for('feed') }}">
                         <textarea name="post_content" class="form-control" rows="2"
-                            placeholder="What are you thinking?"></textarea>
+                            placeholder="What's on your mind?"></textarea>
                         <div class="mar-top clearfix">
                             <button class="btn btn-sm btn-primary pull-right" type="submit"><i
                                     class="fa fa-pencil fa-fw"></i> Share</button>
@@ -34,23 +76,25 @@
             <div class="panel">
                 <div class="panel-body">
                     <div class="media-block">
-                        <a class="media-left" href="#"><img class="img-circle img-sm" alt="Profile Picture"
-                                src="https://bootdey.com/img/Content/avatar/avatar1.png"></a>
+                        <div class="media-left">
+                            <img class="img-circle" alt="Profile Picture"
+                                src="https://bootdey.com/img/Content/avatar/avatar1.png">
+                        </div>
                         <div class="media-body">
                             <div class="mar-btm">
                                 <a href="#" class="btn-link text-semibold media-heading box-inline">{{ post['UserId'] }}</a>
-                                <p class="text-muted text-sm"><i class="fa fa-clock-o fa-lg"></i>
-                                    {{ post['Timestamp'] }}</p>
+                                <span class="text-muted">{{ post['Timestamp'] }}</span>
                             </div>
                             <p>{{ post['description'] }}</p>
+                            <img class="img-responsive thumbnail" src="{{ post['Image'] }}" alt="Image">
                             <div class="pad-ver">
                                 <span class="tag tag-sm"><i class="fa fa-heart text-danger"></i>
                                     {{ post['Likes'] }} Likes</span>
                                 <div class="btn-group">
                                     <a class="btn btn-sm btn-default btn-hover-success" href="#"><i
-                                            class="fa fa-thumbs-up"></i></a>
+                                            class="fa fa-thumbs-up"></i> Like</a>
                                     <a class="btn btn-sm btn-default btn-hover-danger" href="#"><i
-                                            class="fa fa-thumbs-down"></i></a>
+                                            class="fa fa-thumbs-down"></i> Dislike</a>
                                 </div>
                                 <a class="btn btn-sm btn-default btn-hover-primary" href="#">Comment</a>
                             </div>
@@ -64,3 +108,8 @@
 
     <script src="https://code.jquery.com/jquery-1.10.2.min.js"></script>
     <script src="https://netdna.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+</body>
+
+</html>
+ 

@@ -66,7 +66,7 @@ def index():
     if flask_login.current_user.is_authenticated:
         return redirect('/feed')
 
-    return render_template('home.html.jinja')
+    return render_template('register.html.jinja')
 
 
 @app.route('/register', methods=['GET', 'POST'])
